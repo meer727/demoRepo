@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/meer727/demoRepo.git'
-            }
-        }
 
         stage('Terraform Init') {
             steps {
