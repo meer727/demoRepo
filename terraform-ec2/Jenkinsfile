@@ -6,27 +6,33 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/meer727/terraform-ec2.git'
+                git 'https://github.com/meer727/demoRepo.git'
             }
         }
 
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                dir('terraform-ec2') {
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                dir('terraform-ec2') {
+                    sh 'terraform plan'
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -auto-approve'
+                dir('terraform-ec2') {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
